@@ -25,7 +25,7 @@ void setup() {
 }
 
 void stepr(int ste) {
-  stepr(ste);
+  stepper1.moveRelativeInSteps(ste);
 }
 
 void loop() {
@@ -36,20 +36,22 @@ void loop() {
   }
 
   if (screenOk == 7) {
-    stepr(-1);
-    BinState = BinState - 1
+    stepr((-1)*cells);
+    BinState = BinState - 1;
     if (BinState == 0) {
       BinState = 6;
     }
     EEPROM.update(0, BinState);
+    screenOk = 0;
   }
   if (screenOk == 8) {
-    stepr(1);
-    BinState = BinState + 1
+    stepr(1 * cells);
+    BinState = BinState + 1;
     if (BinState == 7) {
       BinState = 1;
     }
     EEPROM.update(0, BinState);
+    screenOk = 0;
   }
 
   if (screenOk == 1 && BinState != 1) {
@@ -148,4 +150,5 @@ void loop() {
     EEPROM.update(0, 6);
     delay(200);
   }
+
 }
