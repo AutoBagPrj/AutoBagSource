@@ -25,7 +25,7 @@ void setup() {
 }
 
 void stepr(int ste) {
-  stepper1.moveRelativeInSteps(ste);
+  stepper1.moveRelativeInSteps(ste * cells);
 }
 
 void loop() {
@@ -36,7 +36,7 @@ void loop() {
   }
 
   if (screenOk == 7) {
-    stepr((-1)*cells);
+    stepr(-1);
     BinState = BinState - 1;
     if (BinState == 0) {
       BinState = 6;
@@ -44,8 +44,9 @@ void loop() {
     EEPROM.update(0, BinState);
     screenOk = 0;
   }
+  
   if (screenOk == 8) {
-    stepr(1 * cells);
+    stepr(1);
     BinState = BinState + 1;
     if (BinState == 7) {
       BinState = 1;
@@ -54,98 +55,98 @@ void loop() {
     screenOk = 0;
   }
 
-  if (screenOk == 1 && BinState != 1) {
+  if (screenOk == 1) {
     BinState = EEPROM.read(0);
     if (BinState == 2) {
-      stepr((-1) * cells);
+      stepr();
     } else if (BinState == 3) {
-      stepr((-2) * cells);
+      stepr();
     } else if (BinState == 4) {
-      stepr(3 * cells);
+      stepr();
     } else if (BinState == 5) {
-      stepr(2 * cells);
+      stepr();
     } else if (BinState == 6) {
-      stepr(1 * cells);
+      stepr();
     }
     EEPROM.update(0, 1);
     delay(200);
   }
-  if (screenOk == 2 && BinState != 2) {
+  if (screenOk == 2) {
     BinState = EEPROM.read(0);
     if (BinState == 1) {
-      stepr(1 * cells);
+      stepr();
     } else if (BinState == 3) {
-      stepr((-1) * cells);
+      stepr();
     } else if (BinState == 4) {
-      stepr((-2) * cells);
+      stepr();
     } else if (BinState == 5) {
-      stepr(3 * cells);
+      stepr();
     } else if (BinState == 6) {
-      stepr(2 * cells);
+      stepr();
     }
     EEPROM.update(0, 2);
     delay(200);
   }
-  if (screenOk == 3 && BinState != 3) {
+  if (screenOk == 3) {
     BinState = EEPROM.read(0);
     if (BinState == 1) {
-      stepr(2 * cells);
+      stepr();
     } else if (BinState == 2) {
-      stepr(2 * cells);
+      stepr();
     } else if (BinState == 4) {
-      stepr((-1) * cells);
+      stepr();
     } else if (BinState == 5) {
-      stepr((-2) * cells);
+      stepr();
     } else if (BinState == 6) {
-      stepr(3 * cells);
+      stepr();
     }
     EEPROM.update(0, 3);
     delay(200);
   }
-  if (screenOk == 4 && BinState != 4) {
+  if (screenOk == 4) {
     BinState = EEPROM.read(0);
     if (BinState == 1) {
-      stepr(3 * cells);
+      stepr();
     } else if (BinState == 2) {
-      stepr(2 * cells);
+      stepr();
     } else if (BinState == 3) {
-      stepr(cells);
+      stepr();
     } else if (BinState == 5) {
-      stepr((-1) * cells);
+      stepr();
     } else if (BinState == 6) {
-      stepr((-2) * cells);
+      stepr();
     }
     EEPROM.update(0, 4);
     delay(200);
   }
-  if (screenOk == 5 && BinState != 5) {
+  if (screenOk == 5) {
     BinState = EEPROM.read(0);
     if (BinState == 1) {
-      stepr((-2) * cells);
+      stepr();
     } else if (BinState == 2) {
-      stepr(3 * cells);
+      stepr();
     } else if (BinState == 3) {
-      stepr(2 * cells);
+      stepr();
     } else if (BinState == 4) {
-      stepr(cells);
+      stepr();
     } else if (BinState == 6) {
-      stepr((-1) * cells);
+      stepr();
     }
     EEPROM.update(0, 5);
     delay(200);
   }
-  if (screenOk == 6 && BinState != 6) {
+  if (screenOk == 6) {
     BinState = EEPROM.read(0);
     if (BinState == 1) {
-      stepr((-1) * cells);
+      stepr();
     } else if (BinState == 2) {
-      stepr((-2) * cells);
+      stepr();
     } else if (BinState == 3) {
-      stepr(3 * cells);
+      stepr();
     } else if (BinState == 4) {
-      stepr(2 * cells);
+      stepr();
     } else if (BinState == 5) {
-      stepr(cells);
+      stepr();
     }
     EEPROM.update(0, 6);
     delay(200);
