@@ -24,8 +24,8 @@ void setup() {
   Serial1.begin(9600);
 }
 
-void stepr(int ste) {
-  stepper1.moveRelativeInSteps(ste * cells);
+void stepr(int s) {
+  stepper1.moveRelativeInSteps(s * cells);
 }
 
 void loop() {
@@ -46,7 +46,7 @@ void loop() {
   }
   
   if (screenOk == 8) {
-    stepr(1);
+    stepr();
     BinState = BinState + 1;
     if (BinState == 7) {
       BinState = 1;
